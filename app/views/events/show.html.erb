@@ -1,5 +1,7 @@
-<h1>Event <%= @event.name %></h1>
-
-<% @vote_categories.each do |category| %>
-  <%= render 'votes/vote_form', locals: { category: category } %>
-<% end %>
+<div class="event">
+  <h1><%= @event.name %></h1>
+  <p>Click buttons below to vote. You can vote as many times as you'd like!</p>
+  <% @vote_categories.each do |category| %>
+    <%= render 'votes/vote_form', locals: { category: category } %>
+  <% end %>
+</div>

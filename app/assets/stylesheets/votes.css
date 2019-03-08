@@ -1,5 +1,15 @@
 .vote-button {
   width:150px;
-  height:30px;
+  height:50px;
   font-size:20px;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 600px) {
+  .event {
+    text-align: center;
+  }
+  .vote-button {
+    width: 80%;
+  }
 }

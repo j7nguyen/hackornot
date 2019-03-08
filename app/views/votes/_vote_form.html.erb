@@ -1,6 +1,6 @@
 <% category = locals[:category] %>
 <% @vote = Vote.new %>
-<%= form_with(model: @vote, id: "#{category.name}") do |f| %>
+<%= form_with(model: @vote, id: "#{category.name}", class: "vote-form") do |f| %>
   <%= f.hidden_field :decision, value: true %>
   <%= f.hidden_field :vote_category_id, value: category.id %>
   <%= f.hidden_field :event_id, value: params[:id] %>

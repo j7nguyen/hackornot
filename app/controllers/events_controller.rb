@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def show
-    @vote_categories = VoteCategory.all
+    @vote_categories = VoteCategory.all.sort_by{|c| c.name }
     @event = Event.find_by(id: params[:id])
   end
 
