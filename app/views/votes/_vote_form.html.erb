@@ -1,0 +1,10 @@
+<% category = locals[:category] %>
+<% @vote = Vote.new %>
+<h3><%= category.name %></h3>
+<%= form_with(model: @vote) do |f| %>
+  <%= f.label :decision %><br>
+  <%= f.check_box :decision %>
+  <%= f.hidden_field :vote_category_id, value: category.id %>
+  <%= f.hidden_field :event_id, value: params[:id] %>
+  <%= f.submit %>
+<% end %>
