@@ -4,7 +4,7 @@
   <% @vote_categories.each do |category| %>
   <div class="vote-results">
     <div><h1><%= category.name %>: </h1></div>
-    <div><h1><span class="vote-count" id='<%= category.id %>-votes'><%= @vote_hash[category.id] %></span></h1></div>
+    <div><h1><span class="vote-count" id='<%= category.id %>-votes'><%= @vote_hash[category.id].nil? ? 0 : @vote_hash[category.id]  %></span></h1></div>
   </div>
   <% end %>
 </div>
