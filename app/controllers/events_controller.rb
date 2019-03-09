@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
   def overview
     @event = Event.find_by(id: params[:id])
-    @vote_categories = VoteCategory.all
+    @vote_categories = VoteCategory.all.sort_by{|c| c.name }
     @vote_hash = parse_votes(@event)
   end
 
