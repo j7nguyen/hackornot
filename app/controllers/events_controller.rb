@@ -14,6 +14,15 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def votes
+    @event = Event.find_by(id: params[:id])
+    @votes = Vote.where(event: @event)
+
+    respond_to do |format|
+      format.json { render json: @votes }
+    end
+  end
+
   private
 
   def parse_votes(event)

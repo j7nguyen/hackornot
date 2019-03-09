@@ -2,5 +2,37 @@
 
 <% @vote_categories.each do |category| %>
   <h2><%= category.name %></h2>
-  <p>Votes: <%= @vote_hash[category.id] %></p>
+  <p>Votes: <span class="vote-count" id='<%= category.id %>-votes'><%= @vote_hash[category.id] %></span></p>
 <% end %>
+
+<script>
+  var voteCounts = {};
+  function updateVotes() {
+    $.ajax({
+      type: "GET",
+      url: "/events/<%= @event.id %>/votes",
+      success: function(data, textStatus, jqXHR) {
+        parseVotes(data);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+
+      }
+    });
+  }
+  function parseVotes(votes) {
+    voteCounts = {};
+    votes.forEach(function(vote) {
+      if (voteCounts[vote.vote_category_id] != undefined) {
+        voteCounts[vote.vote_category_id] += 1;
+      } else {
+        voteCounts[vote.vote_category_id] = 1;
+      }
+    });
+    for (var category_id in voteCounts) {
+      $('#' + category_id + '-votes').text(voteCounts[category_id]);
+    }
+    console.log("updated votes");
+  }
+  // updateVotes();
+  setInterval("updateVotes()", 1500);
+</script>

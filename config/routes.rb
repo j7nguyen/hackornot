@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :events
   resources :votes
   get 'events/overview/:id', to: 'events#overview'
+  get 'events/:id/votes', to: 'events#votes'
 end
